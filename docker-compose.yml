@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  php:
+    image: php:7.4.29-cli-alpine3.15
+    container_name: ${CONTAINER_NAME_PHP}${CONTAINER_NICKNAME}
+    volumes:
+      - ./src/php:/var/www/html/php
+    working_dir: /var/www/html/php
+    tty: true
+
+  node:
+    image: node:14-alpine3.15
+    container_name: ${CONTAINER_NAME_NODE}${CONTAINER_NICKNAME}
+    volumes:
+      - ./src/javascript:/var/www/html/javascript
+      - ./src/javascript/stdin:/dev/stdin
+    working_dir: /var/www/html/javascript
+    tty: true
+
+  java:
+    image: openjdk:18-jdk-slim
+    container_name: ${CONTAINER_NAME_JAVA}${CONTAINER_NICKNAME}
+    volumes:
+      - ./src/java:/var/www/html/java
+    working_dir: /var/www/html/java
+    tty: true
+
+  python:
+    image: python:3.8.13-alpine3.15
+    container_name: ${CONTAINER_NAME_PYTHON}${CONTAINER_NICKNAME}
+    volumes:
+      - ./src/python:/var/www/html/python
+    working_dir: /var/www/html/python
+    tty: true
+
+  go:
+    image: golang:1.18.2-alpine3.15
+    container_name: ${CONTAINER_NAME_GO}${CONTAINER_NICKNAME}
+    volumes:
+      - ./src/go:/var/www/html/go
+    working_dir: /var/www/html/go
+    tty: true
+
+  lua:
+    image: nickblah/lua:5.4.3
+    container_name: ${CONTAINER_NAME_LUA}${CONTAINER_NICKNAME}
+    volumes:
+      - ./src/lua:/var/www/html/lua
+    working_dir: /var/www/html/lua
+    tty: true
